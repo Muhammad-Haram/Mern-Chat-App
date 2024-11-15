@@ -1,7 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import { app, server } from "./socket/socket.js";
+import connectDB from "./config/database.js";
 dotenv.config({});
 
+const app = express();
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`server listen at port ${PORT}`);
+});
