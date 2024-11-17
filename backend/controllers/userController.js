@@ -1,4 +1,4 @@
-import { User } from "../models/userModels";
+import { User } from "../models/userModels.js";
 import bcryptjs from "bcryptjs";
 
 export const register = async (req, res) => {
@@ -29,9 +29,15 @@ export const register = async (req, res) => {
       fullName,
       username,
       password: hashedPassword,
-      profilePhoto: gender === male ? maleProfilePhoto : femaleProfilePhoto,
+      profilePhoto: gender === "male" ? maleProfilePhoto : femaleProfilePhoto,
       gender,
     });
+
+    return res.status(200).json({
+      message: "User created successfully",
+      success: true,
+    })
+
   } catch (error) {
     console.log(error);
   }
