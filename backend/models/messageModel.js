@@ -8,13 +8,13 @@ const messageModel = new mongoose.Schema(
       required: true,
     },
     reciverId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    message:{
-        type: String,
-        required: true,
+    message: {
+      type: String,
+      required: true,
     }
   },
   { timestamps: true }
