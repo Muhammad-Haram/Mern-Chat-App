@@ -108,7 +108,7 @@ export const logout = async (req, res) => {
 export const getOtherUsers = async (req, res) => {
   try {
     
-
+    
 
   } catch (error) { 
     console.log(error)
