@@ -51,7 +51,7 @@ export const getMessage = async (req, res) => {
             participants: { $all: [senderId, reciverId] }
         }).populate("messages");
 
-        console.log(conversation)
+        return res.status(200).json(conversation?.messages);
 
     } catch (error) {
         console.log(error)
