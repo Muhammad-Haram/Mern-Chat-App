@@ -20,13 +20,14 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-
       const res = await axios.post(`http://localhost:8080/api/v1/user/register`, User, {
         headers: {
           "Content-Type": "application/json"
         },
         withCredentials: true
       })
+
+      console.log(res)
 
     } catch (error) {
       console.log(error)
