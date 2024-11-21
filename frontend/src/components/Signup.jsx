@@ -12,9 +12,26 @@ const Signup = () => {
     gender: ""
   })
 
+  const handleCheckbox = (gender) => {
+    setUser({ ...User, gender })
+  }
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("submit")
+
+    try {
+
+    } catch (error) {
+      console.log(error)
+    }
+
+    setUser({
+      fullName: "",
+      username: "",
+      passowrd: "",
+      confirmPassword: "",
+      gender: ""
+    })
   }
 
   return (
@@ -40,6 +57,7 @@ const Signup = () => {
               <span className='text-base label-text'>Username</span>
             </label>
             <input
+              onChange={(e) => setUser({ ...User, username: e.target.value })}
               value={User.username}
               className='w-full input input-bordered h-10'
               type="text"
@@ -51,6 +69,7 @@ const Signup = () => {
               <span className='text-base label-text'>Password</span>
             </label>
             <input
+              onChange={(e) => setUser({ ...User, passowrd: e.target.value })}
               value={User.passowrd}
               className='w-full input input-bordered h-10'
               type="password"
@@ -62,6 +81,7 @@ const Signup = () => {
               <span className='text-base label-text'>Confirm Password</span>
             </label>
             <input
+              onChange={(e) => setUser({ ...User, confirmPassword: e.target.value })}
               value={User.confirmPassword}
               className='w-full input input-bordered h-10'
               type="password"
@@ -72,6 +92,8 @@ const Signup = () => {
             <div className='flex items-center'>
               <p>Male</p>
               <input
+                checked={User.gender === "male"}
+                onChange={() => { handleCheckbox("male") }}
                 type="checkbox"
                 defaultChecked
                 className="checkbox mx-2" />
@@ -79,6 +101,8 @@ const Signup = () => {
             <div className='flex items-center'>
               <p>Female</p>
               <input
+                checked={User.gender === "female"}
+                onChange={() => { handleCheckbox("female") }}
                 type="checkbox"
                 defaultChecked
                 className="checkbox mx-2" />
@@ -88,7 +112,7 @@ const Signup = () => {
           <p className='text-center my-2'>Already have an account? <Link to="/login">login</Link></p>
 
           <div>
-            <button type='submit' className='btn btn-block btn-sm mt-2 border border-slate-700'>Singup</button>
+            <button type='submit' className='btn btn-block btn-md mt-2 border border-slate-700'>Singup</button>
           </div>
 
         </form>
