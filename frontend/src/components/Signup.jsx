@@ -4,25 +4,25 @@ import axios from 'axios'
 
 const Signup = () => {
 
-  const [User, setUser] = useState({
+  const [user, setUser] = useState({
     fullName: "",
     username: "",
-    passowrd: "",
+    password: "",
     confirmPassword: "",
     gender: ""
   })
 
   const handleCheckbox = (gender) => {
-    setUser({ ...User, gender })
+    setUser({ ...user, gender })
   }
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`http://localhost:8080/api/v1/user/register`, User, {
+      const res = await axios.post("http://localhost:8080/api/v1/user/register", user, {
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         withCredentials: true
       })
@@ -33,10 +33,11 @@ const Signup = () => {
       console.log(error)
     }
 
+
     setUser({
       fullName: "",
       username: "",
-      passowrd: "",
+      password: "",
       confirmPassword: "",
       gender: ""
     })
@@ -53,8 +54,8 @@ const Signup = () => {
               <span className='text-base label-text'>Full Name</span>
             </label>
             <input
-              onChange={(e) => setUser({ ...User, fullName: e.target.value })}
-              value={User.fullName}
+              onChange={(e) => setUser({ ...user, fullName: e.target.value })}
+              value={user.fullName}
               className='w-full input input-bordered h-10'
               type="text"
               placeholder='Full Name' />
@@ -65,8 +66,8 @@ const Signup = () => {
               <span className='text-base label-text'>Username</span>
             </label>
             <input
-              onChange={(e) => setUser({ ...User, username: e.target.value })}
-              value={User.username}
+              onChange={(e) => setUser({ ...user, username: e.target.value })}
+              value={user.username}
               className='w-full input input-bordered h-10'
               type="text"
               placeholder='Username' />
@@ -77,8 +78,8 @@ const Signup = () => {
               <span className='text-base label-text'>Password</span>
             </label>
             <input
-              onChange={(e) => setUser({ ...User, passowrd: e.target.value })}
-              value={User.passowrd}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              value={user.password}
               className='w-full input input-bordered h-10'
               type="password"
               placeholder='Password' />
@@ -89,8 +90,8 @@ const Signup = () => {
               <span className='text-base label-text'>Confirm Password</span>
             </label>
             <input
-              onChange={(e) => setUser({ ...User, confirmPassword: e.target.value })}
-              value={User.confirmPassword}
+              onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+              value={user.confirmPassword}
               className='w-full input input-bordered h-10'
               type="password"
               placeholder='Confirm Password' />
@@ -100,7 +101,7 @@ const Signup = () => {
             <div className='flex items-center'>
               <p>Male</p>
               <input
-                checked={User.gender === "male"}
+                checked={user.gender === "male"}
                 onChange={() => { handleCheckbox("male") }}
                 type="checkbox"
                 defaultChecked
@@ -109,7 +110,7 @@ const Signup = () => {
             <div className='flex items-center'>
               <p>Female</p>
               <input
-                checked={User.gender === "female"}
+                checked={user.gender === "female"}
                 onChange={() => { handleCheckbox("female") }}
                 type="checkbox"
                 defaultChecked
