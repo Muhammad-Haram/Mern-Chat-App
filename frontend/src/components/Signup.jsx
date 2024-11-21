@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-
 import { Link } from "react-router-dom"
+import axios from 'axios'
 
 const Signup = () => {
 
@@ -16,10 +16,17 @@ const Signup = () => {
     setUser({ ...User, gender })
   }
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     try {
+
+      const res = await axios.post(`http://localhost:8080/api/v1/user/register`, User, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      })
 
     } catch (error) {
       console.log(error)
