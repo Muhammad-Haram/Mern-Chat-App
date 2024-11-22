@@ -1,17 +1,39 @@
 import React, { useState } from 'react'
-
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { useDispatch } from 'react-redux';
+import { setAuthUser } from '../redux/userSlice';
 
 const Login = () => {
 
-    const [User, setUser] = useState({
+    const [user, setUser] = useState({
         username: "",
-        passowrd: "",
-    })
+        password: "",
+    });
 
-    const onSubmitHandler = (e) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log(User)
+
+        try {
+            const res = await axios.post("http://localhost:8080/api/v1/user/login", user, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true
+            });
+
+            navigate("/");
+            dispatch(setAuthUser(res.data))
+
+        } catch (error) {
+            toast.error(error.response.data.message);
+            console.log(error)
+        }
+
         setUser({
             username: "",
             passowrd: "",
@@ -29,8 +51,8 @@ const Login = () => {
                             <span className='text-base label-text'>Username</span>
                         </label>
                         <input
-                            onChange={(e) => setUser({ ...User, username: e.target.value })}
-                            value={User.username}
+                            onChange={(e) => setUser({ ...user, username: e.target.value })}
+                            value={user.username}
                             className='w-full input input-bordered h-10'
                             type="text"
                             placeholder='Username' />
@@ -41,8 +63,8 @@ const Login = () => {
                             <span className='text-base label-text'>Password</span>
                         </label>
                         <input
-                            onChange={(e) => setUser({ ...User, passowrd: e.target.value })}
-                            value={User.passowrd}
+                            onChange={(e) => setUser({ ...user, password: e.target.value })}
+                            value={user.password}
                             className='w-full input input-bordered h-10'
                             type="password"
                             placeholder='Password' />
