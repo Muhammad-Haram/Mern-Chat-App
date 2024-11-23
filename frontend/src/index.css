@@ -23,7 +23,7 @@ code {
 
 ::-webkit-scrollbar {
     /* Customize the scrollbar width */
-    width: 6px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,6 +33,6 @@ code {
 
 ::-webkit-scrollbar-thumb {
     /* Customize the scrollbar thumb */
-    background: #1b1b1b;
+    background: #b81717;
     border-radius: 10px;
 }

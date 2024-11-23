@@ -4,7 +4,7 @@ const OtherUser = () => {
     return (
         <>
 
-            <div className={`flex gap-2 items-center hover:bg-zinc-200 rounded p-2 cursor-pointer`}>
+            <div className={`flex gap-2 items-center text-white hover:bg-zinc-900 hover:text-zinc-200 rounded p-2 cursor-pointer`}>
                 <div className={`avatar online`}>
                     <div className='w-12 rounded-full'>
                         <img src={"https://avatar.iran.liara.run/public/boy?username=haram123"} alt="user-profile" />
