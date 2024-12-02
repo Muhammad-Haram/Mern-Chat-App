@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { SendHorizontal } from 'lucide-react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { setMessages } from '../redux/messageSlice';
 
 const SendInput = () => {
 
     const [message, setMessage] = useState("");
     const dispatch = useDispatch();
     const { selectedUser } = useSelector(store => store.user);
+    const { messages } = useSelector(store => store.message);
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -22,12 +24,13 @@ const SendInput = () => {
                 withCredentials: true
             })
 
-            console.log(selectedUser?._id)
             console.log(res)
-
+            dispatch(setMessages([...messages, res.data.newMessage]));
         } catch (error) {
             console.log(error)
         }
+
+        setMessage("")
     }
 
     return (
