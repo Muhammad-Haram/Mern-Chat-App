@@ -20,7 +20,6 @@ const OtherUsers = () => {
                 })
             }
 
-
         </div>
 
     )
