@@ -31,7 +31,9 @@ const App = () => {
   useEffect(() => {
     if (authUser) {
       const socket = io("http://localhost:8080/", {
-
+        query: {
+          userId: authUser._id
+        }
       });
       setSocket(socket)
     }

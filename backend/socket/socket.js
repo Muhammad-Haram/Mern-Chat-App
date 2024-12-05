@@ -12,8 +12,13 @@ const io = new Server(server, {
     },
 });
 
+const userSocketMap = {};
+
 io.on("connection", (socket) => {
     console.log("Connection established", socket.id)
+
+    const userId = socket.handshake.query.userId;
+
 })
 
 export { io, app, server }
