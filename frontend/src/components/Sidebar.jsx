@@ -20,7 +20,8 @@ const Sidebar = () => {
         try {
             const res = await axios.get("http://localhost:8080/api/v1/user/logout");
             navigate("/login");
-            toast.success(res.data.message)
+            toast.success(res.data.message);
+            dispatch(setAuthUser(null));
         } catch (error) {
             console.log(error)
         }
